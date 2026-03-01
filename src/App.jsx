@@ -250,7 +250,7 @@ const AdminPanel = ({ onBack }) => {
 
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="dash-container">
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '4rem' }}>
+      <div className="lux-flex-stack" style={{ marginBottom: '4rem', alignItems: 'flex-start' }}>
         <div style={{ flex: 1 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', marginBottom: '2rem' }}>
             <div>
@@ -302,7 +302,7 @@ const AdminPanel = ({ onBack }) => {
         <h3 style={{ marginBottom: '2rem' }}>{adminTab === 'claims' ? 'Proof Review Queue' : 'Platform User Directory'}</h3>
 
         {loading ? <p>Syncing Vault Data...</p> : adminTab === 'claims' ? (
-          <div style={{ overflowX: 'auto' }}>
+          <div className="table-responsive">
             <table style={{ width: '100%', textAlign: 'left', borderCollapse: 'collapse' }}>
               <thead>
                 <tr style={{ color: 'var(--text-muted)', fontSize: '0.7rem', textTransform: 'uppercase' }}>
@@ -509,7 +509,7 @@ const AdminPanel = ({ onBack }) => {
               </div>
 
               <form onSubmit={handleUpdateUser} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+                <div className="lux-grid-2" style={{ gap: '1rem' }}>
                   <div className="input-group">
                     <label>USERNAME</label>
                     <input className="lux-input" value={editingUser.username} onChange={e => setEditingUser({ ...editingUser, username: e.target.value })} />
@@ -728,7 +728,7 @@ const UserDashboard = ({ user, onUpdateSettings, onRefresh, onBack, onAdmin, pla
         )}
       </AnimatePresence>
 
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '4rem' }}>
+      <div className="lux-flex-stack" style={{ marginBottom: '4rem' }}>
         <div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
             <h2 style={{ fontSize: '3rem' }} className="gold-gradient">Welcome, {user.username}</h2>
@@ -782,7 +782,7 @@ const UserDashboard = ({ user, onUpdateSettings, onRefresh, onBack, onAdmin, pla
         </button>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1.5fr 1fr', gap: '3rem' }}>
+      <div className="lux-grid-2">
         <div className="settings-panel">
           <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '3rem' }}>
             <ShieldCheck size={28} color="var(--gold)" />
@@ -811,7 +811,7 @@ const UserDashboard = ({ user, onUpdateSettings, onRefresh, onBack, onAdmin, pla
             </ul>
           </div>
           <form onSubmit={submitClaim} style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
+            <div className="lux-grid-2" style={{ gap: '1.5rem' }}>
               <div className="input-group">
                 <label>PURCHASE PLATFORM</label>
                 <select className="lux-input" value={platform} onChange={(e) => setPlatform(e.target.value)} style={{ background: '#111827' }}>
@@ -825,7 +825,7 @@ const UserDashboard = ({ user, onUpdateSettings, onRefresh, onBack, onAdmin, pla
                 <input className="lux-input" value={orderId} onChange={(e) => setOrderId(e.target.value)} placeholder="Enter Order ID" required />
               </div>
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
+            <div className="lux-grid-2" style={{ gap: '1.5rem' }}>
               <div className="input-group">
                 <label>TOTAL ORDER AMOUNT (₹)</label>
                 <input className="lux-input" type="number" value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="0.00" required />
@@ -906,7 +906,7 @@ const UserDashboard = ({ user, onUpdateSettings, onRefresh, onBack, onAdmin, pla
         </div>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem', marginTop: '4rem' }}>
+      <div className="lux-grid-2" style={{ marginTop: '4rem' }}>
         <div className="settings-panel">
           <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '3rem' }}>
             <History size={28} color="var(--gold)" />
@@ -914,7 +914,7 @@ const UserDashboard = ({ user, onUpdateSettings, onRefresh, onBack, onAdmin, pla
           </div>
 
           {loadingHistory ? <p>Loading orders...</p> : (
-            <div style={{ overflowX: 'auto' }}>
+            <div className="table-responsive">
               <table style={{ width: '100%', textAlign: 'left', borderCollapse: 'collapse' }}>
                 <thead>
                   <tr style={{ color: 'var(--text-muted)', fontSize: '0.6rem', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
@@ -1316,7 +1316,7 @@ function App() {
           <span style={{ fontSize: '1.8rem' }}>GROW<span className="gold-gradient" style={{ fontWeight: 900 }}>TOGETHER</span></span>
         </motion.div>
 
-        <div style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
+        <div className="lux-flex-stack" style={{ gap: '2rem' }}>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px' }}>
             <div style={{ display: 'flex', gap: '0.5rem' }}>
               <a href="#policy" className="lux-btn-ghost" style={{ padding: '0.6rem 1.5rem', fontSize: '0.6rem', textDecoration: 'none', border: '1.5px solid var(--gold)', color: 'var(--gold)' }}>POLICIES</a>
@@ -1400,7 +1400,7 @@ function App() {
                     transition={{ duration: 0.6 }}
                     style={{ padding: '6rem' }}
                   >
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '4rem', textAlign: 'left' }}>
+                    <div className="lux-flex-stack" style={{ marginBottom: '4rem', textAlign: 'left', alignItems: 'flex-start' }}>
                       <div>
                         <h2 style={{ fontSize: '3.5rem', marginBottom: '0.5rem', color: '#fff' }} className="gold-gradient">{activeTab}</h2>
                         <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', letterSpacing: '0.1em' }}>{platforms.find(p => p.id === activeTab)?.comingSoon ? "COMING SOON" : "LINK IS READY"}</p>

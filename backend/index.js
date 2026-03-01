@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const path = require('path');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const low = require('lowdb');
@@ -40,6 +41,9 @@ app.use(apiLimiter); // Apply to all requests
 app.use(cors());
 app.use(bodyParser.json({ limit: '500mb' }));
 app.use(bodyParser.urlencoded({ limit: '500mb', extended: true }));
+
+// --- SERVE FRONTEND STATIC FILES ---
+app.use(express.static(path.join(__dirname, '../dist')));
 
 // Debug Middleware
 app.use((req, res, next) => {
@@ -1073,7 +1077,12 @@ app.post('/api/admin/user/delete', authenticateToken, (req, res) => {
     res.json({ success: true, message: 'User and all associated data purged successfully.' });
 });
 
-const PORT = 5000;
-app.listen(PORT, () => {
+const PORT = process.env.PORT || 5000;
+// Final Catch-All: Serve index.html for any non-API routes (SPA support)
+app.use((req, res) => {
+    res.sendFile(path.join(__dirname, '../dist/index.html'));
+});
+
+app.listen(PORT, '0.0.0.0', () => {
     console.log(`NexLink Security Server active on port ${PORT}`);
 });
